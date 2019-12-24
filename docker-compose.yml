@@ -1,0 +1,28 @@
+version: '3.5'
+services:
+    archive_collector:
+        container_name: archive_collector
+        build: collector
+        tty: true
+        volumes:
+            - arvhivedata:/var/lib/app/superchat/
+            - "./log/debug/:/var/lib/app/debug/"
+        environment:
+            - YOUTUBE_WATCH_LIVE_KEY_ARCHIVE
+        networks:
+            - elasticsearch_network
+    archive_data:
+        container_name: archive_data
+        image: ubuntu:18.04
+        tty: true
+        volumes:
+            - chatdata:/var/lib/app/superchat/
+        networks:
+            - elasticsearch_network
+volumes:
+  arvhivedata:
+    driver: local
+
+networks:
+    elasticsearch_network:
+        name: "esnetwork"
