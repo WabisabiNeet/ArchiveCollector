@@ -16,7 +16,7 @@ services:
         image: ubuntu:18.04
         tty: true
         volumes:
-            - chatdata:/var/lib/app/superchat/
+            - arvhivedata:/var/lib/app/superchat/
         networks:
             - elasticsearch_network
 volumes:
